@@ -2,7 +2,7 @@ const counts = [
   { user: "alice", student: 0, teacher: 0, subject: 0 },
   { user: "bob", student: 0, teacher: 0, subject: 0 },
 ];
-const logMdwFactory = (req, res, next) => {
+const countMiddleware = (req, res, next) => {
   counts.map((res) => {
     res.user === req.body.username && req.baseUrl === "/student"
       ? res.student++
@@ -24,4 +24,4 @@ const logMdwFactory = (req, res, next) => {
   next();
 };
 
-module.exports = logMdwFactory;
+module.exports = countMiddleware;

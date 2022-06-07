@@ -6,8 +6,7 @@ const subjectRouter = require("./router/subject");
 
 const LoggingMiddleware = require("./middleware/logging_middleware");
 const unauthorizedMiddleware = require("./middleware/unauthorized_middleware");
-// const CountMiddleware = require("./middleware/count_middleware");
-const logMdwFactory = require("./middleware/count_middleware");
+const CountMiddleware = require("./middleware/count_middleware");
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json({ extended: true }));
@@ -15,21 +14,21 @@ app.use(
   "/student",
   LoggingMiddleware,
   unauthorizedMiddleware,
-  logMdwFactory,
+  CountMiddleware,
   studentRouter
 );
 app.use(
   "/teacher",
   LoggingMiddleware,
   unauthorizedMiddleware,
-  logMdwFactory,
+  CountMiddleware,
   teacherRouter
 );
 app.use(
   "/subject",
   LoggingMiddleware,
   unauthorizedMiddleware,
-  logMdwFactory,
+  CountMiddleware,
   subjectRouter
 );
 
