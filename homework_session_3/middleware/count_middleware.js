@@ -12,6 +12,7 @@ const countMiddleware = (req, res, next) => {
       ? res.subject++
       : console.log("New count: ");
 
+    return res;
     // if (res.user === req.body.username && req.baseUrl === "/student") {
     //   res.student++;
     // } else if (res.user === req.body.username && req.baseUrl === "/teacher") {
