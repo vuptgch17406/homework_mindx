@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 });
 app.use(bodyParser.json({ extended: true }));
 app.use("/list-movie", authenMiddleware, listMovieRouter);
-app.use("/login", authenMiddleware, loginRouter);
+app.use("/login", loginRouter);
 
 app.listen(3000, () => {
   console.log("App is running on port 3000");

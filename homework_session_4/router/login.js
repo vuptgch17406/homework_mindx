@@ -15,10 +15,8 @@ loginRouter.post("/", (req, res) => {
   const indexMember = Member.findIndex((el) => {
     return JSON.stringify(el) === JSON.stringify(req.body);
   });
-  const indexGuest = Guest.findIndex((el) => {
-    return JSON.stringify(el) === JSON.stringify(req.body);
-  });
-  const isUnAuthorize = indexAdmin < 0 && indexMember < 0 && indexGuest < 0;
+
+  const isUnAuthorize = indexAdmin < 0 && indexMember < 0;
 
   if (isUnAuthorize) {
     res.json("User is not existed");
