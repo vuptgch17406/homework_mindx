@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const loginRouter = require("./router/login");
 const listMovieRouter = require("./router/list-movie");
+const loginRouter = require("./router/login");
 const authenMiddleware = require("./middleware/authen_mdw");
 
 app.use(bodyParser.json({ extended: true }));
