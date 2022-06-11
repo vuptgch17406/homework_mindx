@@ -9,4 +9,12 @@ const Guests = [
   },
 ];
 
+function addRole(arr, role) {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].role = role;
+  }
+  return arr;
+}
+
+addRole(Guests, "guest");
 module.exports = Guests;

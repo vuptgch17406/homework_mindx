@@ -1,9 +1,6 @@
 const jwt = require("jsonwebtoken");
 const jwtKey = require("../constants/key");
-const Admin = require("../constants/Admin");
-const Member = require("../constants/Member");
-const Guest = require("../constants/Guest");
-const ListMovie = require("../constants/ListMovie");
+const listUser = require("../constants/listUser");
 
 function authenMiddleware(req, res, next) {
   const token = req.headers.authorization.split(" ")[1];
@@ -16,22 +13,20 @@ function authenMiddleware(req, res, next) {
     return;
   }
 
-  const indexAdmin = Admin.findIndex((el) => {
-    return JSON.stringify(el) === JSON.stringify(req.body);
-  });
-  const indexMember = Member.findIndex((el) => {
-    return JSON.stringify(el) === JSON.stringify(req.body);
-  });
-  if (indexAdmin < 0 && indexMember < 0) {
-    res.status(401);
-    res.json("User is not existed");
-    return;
-  }
-  req["guestRole"] = "guest";
-  req["adminRole"] = "admin";
-  req["memberRole"] = "member";
+  if (decode) {
+    const index = listUser.findIndex((el) => {
+      return el.id === decode.id && el.name === decode.name;
+    });
 
-  next();
+    if (index < 0) {
+      res.json("User is not existed");
+      res.status(401);
+      return;
+    }
+    req["userRole"] = listUser[index].role;
+
+    next();
+  }
 }
 
 module.exports = authenMiddleware;

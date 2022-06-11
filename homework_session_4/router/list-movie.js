@@ -3,7 +3,7 @@ const listMovieRouter = express.Router();
 const ListMovie = require("../constants/ListMovie");
 
 listMovieRouter.get("/", (req, res) => {
-  if (req.guestRole === "guest") {
+  if (req.userRole === "guest") {
     const listMovie = ListMovie.filter((el) => {
       return el.type === "free";
     });
@@ -14,16 +14,13 @@ listMovieRouter.get("/", (req, res) => {
 });
 
 listMovieRouter.post("/", (req, res) => {
-  if (req.guestRole !== "guest" && req.guestRole !== "member") {
+  if (req.userRole !== "admin") {
     res.json("Unauthorized");
     res.json(401);
     return;
   }
-  const messageBody = req.body;
-  const index = ListMovie.findIndex((el) => {
-    return messageBody.id === el.id;
-  });
-  res.json(Student);
+  ListMovie.push(req.body);
+  res.json(ListMovie);
 });
 
 module.exports = listMovieRouter;

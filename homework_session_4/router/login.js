@@ -5,18 +5,16 @@ const jwtKey = require("../constants/key");
 const Admin = require("../constants/Admin");
 const Member = require("../constants/Member");
 const Guest = require("../constants/Guest");
+const listUser = require("../constants/listUser");
 
 loginRouter.post("/", (req, res) => {
   console.log("This is request body", req.body);
   const msgBody = req.body;
-  const indexAdmin = Admin.findIndex((el) => {
-    return JSON.stringify(el) === JSON.stringify(req.body);
-  });
-  const indexMember = Member.findIndex((el) => {
-    return JSON.stringify(el) === JSON.stringify(req.body);
+  const index = listUser.findIndex((el) => {
+    return el.id === req.body.id && el.name === req.body.name;
   });
 
-  const isUnAuthorize = indexAdmin < 0 && indexMember < 0;
+  const isUnAuthorize = index < 0;
 
   if (isUnAuthorize) {
     res.json("User is not existed");
