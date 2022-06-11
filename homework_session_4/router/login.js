@@ -2,9 +2,6 @@ const express = require("express");
 const loginRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const jwtKey = require("../constants/key");
-const Admin = require("../constants/Admin");
-const Member = require("../constants/Member");
-const Guest = require("../constants/Guest");
 const listUser = require("../constants/listUser");
 
 loginRouter.post("/", (req, res) => {
