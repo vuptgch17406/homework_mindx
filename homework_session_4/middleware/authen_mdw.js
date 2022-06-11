@@ -28,5 +28,4 @@ function authenMiddleware(req, res, next) {
     next();
   }
 }
-
 module.exports = authenMiddleware;
