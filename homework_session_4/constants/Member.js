@@ -14,7 +14,5 @@ function addRole(arr, role) {
   }
   return arr;
 }
-
 addRole(Members, "member");
-
 module.exports = Members;
